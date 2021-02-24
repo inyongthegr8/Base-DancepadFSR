@@ -5,7 +5,9 @@
 // https://learn.adafruit.com/force-sensitive-resistor-fsr/using-an-fsr
 
 // Libraries
-#include <Keyboard.h>
+#include <Joystick.h>
+
+Joystick_ Joystick;
 
 // FSR connection variables
 // These numbers correlate to the analog inputs on the arduino
@@ -29,7 +31,7 @@ int fsrActivateUpArrow = 920;
 // Setup
 void setup(void) 
 {   
-  Keyboard.begin();
+  Joystick.begin();
 }
 
 // Runtime loop
@@ -44,44 +46,44 @@ void loop(void)
  // if statement that sends the keystroke for the UP arrow
  if (fsrReadingUpArrow > fsrActivateUpArrow) 
  {
-    Keyboard.press(KEY_UP_ARROW);
+    Joystick.pressButton(2);
  }
  // Releases the UP arrow if the sensitivity is smaller than (activation point - 10)
  else if (fsrReadingUpArrow < fsrActivateUpArrow - 10)
  {
-    Keyboard.release(KEY_UP_ARROW);
+    Joystick.releaseButton(2);
  }
 
  // if statement that sends the keystroke for the LEFT arrow
  if (fsrReadingLeftArrow > fsrActivateLeftArrow) 
  {
-    Keyboard.press(KEY_LEFT_ARROW);
+    Joystick.pressButton(0);
  }
  // Releases the LEFT arrow if the sensitivity is smaller than (activation point - 10)
  else if (fsrReadingLeftArrow < fsrActivateLeftArrow - 10)
  {
-    Keyboard.release(KEY_LEFT_ARROW);
+    Joystick.releaseButton(0);
  }
 
  // if statement that sends the keystroke for the RIGHT arrow
  if (fsrReadingRightArrow > fsrActivateRightArrow) 
  {
-    Keyboard.press(KEY_RIGHT_ARROW);
+    Joystick.pressButton(3);
  }
  // Releases the RIGHT arrow if the sensitivity is smaller than (activation point - 10)
  else if (fsrReadingRightArrow < fsrActivateRightArrow - 10)
  {
-   Keyboard.release(KEY_RIGHT_ARROW);
+    Joystick.releaseButton(3);
  }
 
  // if statement that sends the keystroke for the DOWN arrow
  if (fsrReadingDownArrow > fsrActivateDownArrow) 
  {
-   Keyboard.press(KEY_DOWN_ARROW);
+    Joystick.pressButton(1);
  }
  // Releases the DOWN arrow if the sensitivity is smaller than (activation point - 10)
  else if (fsrReadingDownArrow < fsrActivateDownArrow - 10)
  {
-   Keyboard.release(KEY_DOWN_ARROW);
+    Joystick.releaseButton(1);
  }
 }
